@@ -102,9 +102,32 @@ class Assessment_unittest(unittest.TestCase):
         print(Preguntar_boton.is_enabled())
         time.sleep(5)
 
-    def test_documentacion(self):
-        driver=self.driver
-        #assdfg
+    def test_endPage(self):
+        driver = self.driver
+        self.driver.maximize_window()
+        driver.get('https://www.mercadolibre.com.co/')
+        driver.implicitly_wait(5)
+        Busqueda = driver.find_element(By.XPATH, '//*[@id="cb1-edit"]' )
+        time.sleep(3)
+        Busqueda.send_keys('Bmw 318i Sport')
+        time.sleep(3)
+        Busqueda.send_keys(Keys.ENTER)
+        driver.execute_script("window.scrollTo(0, document.body.scrollHeight)")
+        time.sleep(3)
+
+
+    def test_screenShot (self):
+        driver = self.driver
+        self.driver.maximize_window()
+        driver.get('https://www.mercadolibre.com.co/')
+        driver.implicitly_wait(10)
+        Search = driver.find_element(By.XPATH, '//*[@id="cb1-edit"]')
+        Search.send_keys("Mercedes benz clase amg 63")
+        Search.send_keys(Keys.ENTER)
+        driver.implicitly_wait(10)
+        time.sleep(5)
+        driver.get_screenshot_as_file('C:\\Descargas\\EvidenciaPrueba.png')
+
 
 
     def tearDown(self):
